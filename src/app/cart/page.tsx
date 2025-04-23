@@ -112,14 +112,7 @@ const CartPage = () => {
                         alt={item.product.name}
                         className="w-20 h-20 object-contain rounded-lg shadow"
                       />
-                      {/* <Image
-  src={item.product.imageUrl} // The image URL (make sure it's a valid URL)
-  alt={item.product.name} // Alt text for accessibility
-  width={80} // Set the width of the image (based on your design, adjust as needed)
-  height={80} // Set the height of the image (based on your design, adjust as needed)
-  className="object-contain rounded-lg shadow" // Apply your existing classes
-/> */}
-
+                     
                     </td>
                     <td className="px-6 py-4">{item.product.name}</td>
                     <td className="px-6 py-4">${item.product.price}</td>

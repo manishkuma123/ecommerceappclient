@@ -58,8 +58,7 @@ const Navbar: React.FC = () => {
     { icon: <FaProductHunt className="text-2xl mr-2" />, title: "Product", href: "/product" },
     { icon: <MdHomeMini  className="text-2xl mr-2" />, title: "Home", href: "/" },
     { icon: <FaBlog className="text-2xl mr-2" />, title: "Blog", href: "/blog" },
-    { icon: <RiArticleLine className="text-2xl mr-2" />, title: "SSG", href: "/ssg" },
-    { icon: <RiArticleLine className="text-2xl mr-2" />, title: "Posts", href: "/posts" },
+
     { icon: <RiShoppingCart2Line className="text-2xl mr-2" />, title: "Cart", href: "/cart" },
     { icon: <CgProfile className="text-2xl mr-2" />, title: "Profile", href: "/profile" }
 
