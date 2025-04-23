@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-export default function Transition({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Define the component's props type explicitly
+interface TransitionProps {
+  children: ReactNode;
+}
+
+const Transition = ({ children }: TransitionProps) => {
   return (
     <motion.div
       initial={{ y: 20, opacity: 0 }}
@@ -16,4 +18,6 @@ export default function Transition({
       {children}
     </motion.div>
   );
-}
+};
+
+export default Transition;
