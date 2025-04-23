@@ -19,7 +19,8 @@ const router = useRouter()
     try {
       setLoading(true);
       setError(null); 
-      const response = await axios.post("http://localhost:4000/api/auth/login", {
+      const response = await axios.post("https://somethinguniqueapp.onrender.com/api/auth/login", {
+       
         email,
         password
       });

@@ -14,7 +14,7 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
          
-        const response = await fetch('http://localhost:4000/api/product/all');
+        const response = await fetch('https://somethinguniqueapp.onrender.com/api/product/all');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }

@@ -20,7 +20,7 @@ const ProductDetail = () => {
       setError(null);
 
       try {
-        const response = await fetch(`http://localhost:4000/api/product/all/${id}`);
+        const response = await fetch(`https://somethinguniqueapp.onrender.com/api/product/all/${id}`);
         if (!response.ok) {
           throw new Error("Product not found");
         }
@@ -45,7 +45,7 @@ const ProductDetail = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/cart/add", {
+      const res = await fetch("https://somethinguniqueapp.onrender.com/api/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

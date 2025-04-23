@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/product/all'); 
+        const response = await fetch('https://somethinguniqueapp.onrender.com/api/product/all'); 
         const data = await response.json();
         setProducts(data);
       } catch (error) {

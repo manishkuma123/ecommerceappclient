@@ -22,7 +22,7 @@ const CartPage = () => {
 
     const fetchCart = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/cart/${userId}`);
+        const res = await fetch(`https://somethinguniqueapp.onrender.com/api/cart/${userId}`);
         const data = await res.json();
         setCartItems(data.items || []);
       } catch (error) {
@@ -39,7 +39,7 @@ const CartPage = () => {
     if (!userId || newQuantity <= 0) return;
 
     try {
-      const res = await fetch("http://localhost:4000/api/cart/update", {
+      const res = await fetch("https://somethinguniqueapp.onrender.com/api/cart/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, productId, quantity: newQuantity }),
@@ -59,7 +59,7 @@ const CartPage = () => {
     if (!userId) return;
 
     try {
-      const res = await fetch("http://localhost:4000/api/cart/remove", {
+      const res = await fetch("https://somethinguniqueapp.onrender.com/api/cart/remove", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, productId }),
