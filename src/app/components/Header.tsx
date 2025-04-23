@@ -1,3 +1,4 @@
+
 "use client";
 import type { JSX } from "react";
 
@@ -6,20 +7,21 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdLogin, MdAppRegistration } from "react-icons/md";
+import { MdLogin, MdAppRegistration, MdHomeMini } from "react-icons/md";
 import { FaProductHunt, FaBlog } from "react-icons/fa";
 import { BsShare } from "react-icons/bs";
-import { RiArticleLine, RiShoppingCart2Line } from "react-icons/ri";
-import { motion } from "framer-motion";
-import { MdHomeMini } from "react-icons/md"; 
+import { RiShoppingCart2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import { motion } from "framer-motion";
 
 const ScrollProgress = () => {
   const [scrollWidth, setScrollWidth] = useState(0);
 
   const updateScrollProgress = () => {
     const scrollTop = window.scrollY;
-    const winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const winHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const scrolled = (scrollTop / winHeight) * 100;
     setScrollWidth(scrolled);
   };
@@ -46,7 +48,6 @@ interface NavItem {
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const router = useRouter();
 
   const publicNav: NavItem[] = [
@@ -56,13 +57,10 @@ const Navbar: React.FC = () => {
 
   const privateNav: NavItem[] = [
     { icon: <FaProductHunt className="text-2xl mr-2" />, title: "Product", href: "/product" },
-    { icon: <MdHomeMini  className="text-2xl mr-2" />, title: "Home", href: "/" },
+    { icon: <MdHomeMini className="text-2xl mr-2" />, title: "Home", href: "/" },
     { icon: <FaBlog className="text-2xl mr-2" />, title: "Blog", href: "/blog" },
-
     { icon: <RiShoppingCart2Line className="text-2xl mr-2" />, title: "Cart", href: "/cart" },
-    { icon: <CgProfile className="text-2xl mr-2" />, title: "Profile", href: "/profile" }
-
-    
+    { icon: <CgProfile className="text-2xl mr-2" />, title: "Profile", href: "/profile" },
   ];
 
   const navList: NavItem[] = isLoggedIn ? privateNav : publicNav;
@@ -83,18 +81,18 @@ const Navbar: React.FC = () => {
       const token = localStorage.getItem("token");
       setIsLoggedIn(!!token);
     };
-  
+
     checkToken();
-  
+
     window.addEventListener("user-logged-in", checkToken);
     window.addEventListener("user-logged-out", checkToken);
-  
+
     return () => {
       window.removeEventListener("user-logged-in", checkToken);
       window.removeEventListener("user-logged-out", checkToken);
     };
   }, []);
-  
+
   useEffect(() => {
     const handleEscKeyPress = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -114,47 +112,26 @@ const Navbar: React.FC = () => {
     };
   }, [isOpen]);
 
-  
- 
-
-  
-  useEffect(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    if (savedMode) {
-      setIsDarkMode(JSON.parse(savedMode));
-    }
-  }, []);
-
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
   return (
     <>
       <ScrollProgress />
-      
-      <nav className="flex w-full items-center justify-between px-6 h-16 bg-blue  text-gray-700 border-b border-gray-200 z-10 ">
+
+      <nav className="flex w-full items-center justify-between px-6 h-16 bg-blue text-gray-700 border-b border-gray-200 z-10">
         <div className="flex items-center">
           <button className="mr-2" aria-label="Open Menu" onClick={handleDrawer}>
-            <GiHamburgerMenu className="text-3xl  " />
+            <GiHamburgerMenu className="text-3xl" />
           </button>
           <span className="flex justify-center p-4 border-b">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-2xl font-bold text-center  "
+              className="text-2xl font-bold text-center"
             >
               Manish
             </motion.div>
           </span>
         </div>
-
 
         <div className="flex items-center">
           <div className="hidden md:flex md:justify-between md:bg-transparent">
@@ -168,7 +145,6 @@ const Navbar: React.FC = () => {
                   <span>{title}</span>
                 </button>
               </Link>
-              
             ))}
 
             {isLoggedIn && (
@@ -179,7 +155,6 @@ const Navbar: React.FC = () => {
                 Logout
               </button>
             )}
-             
           </div>
         </div>
 
@@ -193,7 +168,6 @@ const Navbar: React.FC = () => {
           </div>
         )}
 
-  
         <aside
           className={`transform top-0 left-0 w-64 bg-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
@@ -209,7 +183,6 @@ const Navbar: React.FC = () => {
               Manish
             </motion.div>
           </span>
-
 
           {navList.map(({ icon, title, href }, index) => (
             <Link key={index} href={href}>
