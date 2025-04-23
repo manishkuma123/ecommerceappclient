@@ -114,11 +114,7 @@ const Navbar: React.FC = () => {
   }, [isOpen]);
 
   
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    localStorage.setItem("darkMode", JSON.stringify(newMode));
-  };
+ 
 
   
   useEffect(() => {
@@ -182,12 +178,7 @@ const Navbar: React.FC = () => {
                 Logout
               </button>
             )}
-             {/* <button
-               onClick={toggleDarkMode}
-               className="p-2 ml-4 text-white bg-gray-800 rounded hover:bg-gray-600"
-             >
-               {isDarkMode ? "🌙 Dark" : "☀️ Light"}
-             </button> */}
+             
           </div>
         </div>
 

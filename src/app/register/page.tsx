@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { redirect,useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +39,19 @@ setUsername("")
 
 router.push('/login')
 
-    } catch (error: any) {
-      console.error("Error during registration:", error);
-      setError(error?.response?.data?.message || "Something went wrong. Please try again.");
+    } 
+    catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error during registration:", error.message);
+        setError(error.message);
+      } else {
+        console.error("Unknown error during registration:", error);
+        setError("Something went wrong. Please try again.");
+      }
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
+    
   };
 
   return (

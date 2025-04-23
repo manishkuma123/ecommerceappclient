@@ -55,7 +55,9 @@ export default function Footer() {
         <div className="space-y-6 sm:flex sm:justify-between sm:items-center">
           <div className="max-w-md">
             <h3 className="text-lg font-semibold sm:text-2xl">
-              Manish Kumar's Shopping Website
+              
+              <a title="Manish Kumar&#39;s Shopping Website">Visit</a>
+
             </h3>
           </div>
 

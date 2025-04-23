@@ -4,7 +4,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion'; 
-import Image from "next/image"
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);

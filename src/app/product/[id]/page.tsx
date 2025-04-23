@@ -4,8 +4,18 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
+// ✅ Define Product type
+type Product = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+};
+
 const ProductDetail = () => {
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,9 +34,10 @@ const ProductDetail = () => {
         if (!response.ok) {
           throw new Error("Product not found");
         }
-        const data = await response.json();
+        const data: Product = await response.json();
         setProduct(data);
-      } catch (err) {
+      } catch (err: unknown) {
+        console.error("Fetch product error:", err);
         setError("Failed to fetch product details");
       } finally {
         setLoading(false);
@@ -36,7 +47,7 @@ const ProductDetail = () => {
     fetchProduct();
   }, [id]);
 
-  const addToCart = async (product: any) => {
+  const addToCart = async (product: Product) => {
     const userId = localStorage.getItem("userid");
 
     if (!userId) {
@@ -64,7 +75,7 @@ const ProductDetail = () => {
       const data = await res.json();
       alert("Product added to cart!");
       console.log("Cart Response:", data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Add to cart error:", err);
       alert("Something went wrong while adding to cart.");
     }
