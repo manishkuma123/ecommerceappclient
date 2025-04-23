@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 
-import { ThemeProvider } from 'next-themes'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider attribute="class">
+  
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <Header />
@@ -37,6 +36,6 @@ export default function RootLayout({
         
       </body>
     </html>
-    </ThemeProvider>
+
   );
 }
