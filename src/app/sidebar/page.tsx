@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsShare } from "react-icons/bs";
-
+import type { JSX } from "react";
 interface NavItem {
   icon: JSX.Element;
   title: string;

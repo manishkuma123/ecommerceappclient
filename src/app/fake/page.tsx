@@ -2,25 +2,38 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion';
 
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  description?: string;
+  category?: string;
+}
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products'); 
+        const response = await fetch('https://fakestoreapi.com/products');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
         const data = await response.json();
         setProducts(data);
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Something went wrong.");
+        }
       } finally {
         setLoading(false);
       }
@@ -43,19 +56,18 @@ const ProductList = () => {
             whileHover={{ scale: 1.05, y: -10 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300 }}
-          > 
-          
+          >
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-50 object-cover mb-4 group-hover:opacity-80 transition-opacity "
+              className="w-full h-50 object-cover mb-4 group-hover:opacity-80 transition-opacity"
             />
-            <div className="p-4  ">
+            <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h2>
               <p className="text-lg font-semibold text-gray-600 mb-4">${product.price}</p>
-              <Link href={`/fake/${product.id}`} passHref className='mt-1'>
+              <Link href={`/fake/${product.id}`}>
                 <motion.button
-                    className=" p-4 bg-black text-white py-2 rounded-md text-lg font-medium hover:text-green-400 transition-colors"
+                  className="p-4 bg-black text-white py-2 rounded-md text-lg font-medium hover:text-green-400 transition-colors"
                   whileHover={{ scale: 1.1, backgroundColor: '#1D4ED8' }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -4,10 +4,22 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
+// ✅ Define Product type inline
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  category?: string;
+  quantity?: number;
+}
+
 const ProductDetail = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
 
   const pathname = usePathname();
   const id = pathname?.split("/").pop();
@@ -28,42 +40,39 @@ const ProductDetail = () => {
         setProduct(data);
       } catch (err) {
         console.error("Fetch error:", err);
-        setError("Failed to fetch product details");
+        setError("Failed to load product.");
+      } finally {
+        setLoading(false);
       }
-      
-     
     };
 
     fetchProduct();
   }, [id]);
-  
 
-
-
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    const existingProduct = cart.find(item => item.id === product._id);
+  // ✅ Fully typed
+  const addToCart = (product: Product) => {
+    const existingProduct = cart.find(item => item.id === product.id);
 
     if (existingProduct) {
       setCart(cart.map(item =>
         item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
+          ? { ...item, quantity: (item.quantity || 1) + 1 }
           : item
       ));
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+
     localStorage.setItem('cart', JSON.stringify(cart));
   };
-  if (loading) return <div className="text-center py-8  bg-white">Loading...</div>;
+
+  if (loading) return <div className="text-center py-8 bg-white">Loading...</div>;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
   if (!product) return <div className="text-center py-8">No product found</div>;
 
   return (
     <div className="container mx-auto p-6 max-w-screen-lg w-full bg-white mt-20 mb-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-     
         <div className="flex justify-center items-center">
           <motion.img
             src={product.image}
@@ -74,13 +83,11 @@ const ProductDetail = () => {
           />
         </div>
 
-        
         <div className="flex flex-col justify-center space-y-4">
           <h1 className="text-4xl font-extrabold text-gray-800">{product.title}</h1>
           <p className="text-lg text-gray-600">{product.description}</p>
           <p className="text-2xl font-semibold text-blue-600">${product.price}</p>
 
-         
           <motion.button
             className="mt-6 bg-black text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md transform transition duration-200 ease-in-out hover:bg-black hover:scale-105"
             whileHover={{ scale: 1.05 }}
@@ -90,8 +97,6 @@ const ProductDetail = () => {
           >
             Add to Cart
           </motion.button>
-
-         
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 "use client";
+import type { JSX } from "react";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -137,17 +139,17 @@ const Navbar: React.FC = () => {
     <>
       <ScrollProgress />
       
-      <nav className="flex w-full items-center justify-between px-6 h-16 bg-blue text-gray-700 border-b border-gray-200 z-10">
+      <nav className="flex w-full items-center justify-between px-6 h-16 bg-blue  text-gray-700 border-b border-gray-200 z-10 ">
         <div className="flex items-center">
           <button className="mr-2" aria-label="Open Menu" onClick={handleDrawer}>
-            <GiHamburgerMenu className="text-3xl" />
+            <GiHamburgerMenu className="text-3xl  " />
           </button>
           <span className="flex justify-center p-4 border-b">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-2xl font-bold text-center"
+              className="text-2xl font-bold text-center  "
             >
               Manish
             </motion.div>
