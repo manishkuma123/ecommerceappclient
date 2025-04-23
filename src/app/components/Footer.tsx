@@ -54,11 +54,11 @@ export default function Footer() {
         {/* Header Section */}
         <div className="space-y-6 sm:flex sm:justify-between sm:items-center">
           <div className="max-w-md">
-            <h3 className="text-lg font-semibold sm:text-2xl">
-              
-              <a title="Manish Kumar&#39;s Shopping Website">Visit</a>
+          
+<h3 className="text-lg font-semibold sm:text-2xl">
+  Manish Kumar&apos;s Shopping Website
+</h3>
 
-            </h3>
           </div>
 
           {/* Subscription Form */}

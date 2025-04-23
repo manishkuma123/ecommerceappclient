@@ -32,7 +32,7 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+ 
       <div className="bg-gray-50 min-h-screen">
         <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh]">
           <Image
@@ -114,7 +114,7 @@ const Home = () => {
           </div>
         </section>
       </div>
-    </main>
+
   );
 };
 
